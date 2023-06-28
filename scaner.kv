@@ -1,0 +1,57 @@
+<ScanScreen>:
+    name: "scanscreen"
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            title: "Escaner"
+            anchor_title:'left'
+            left_action_items: [["menu", lambda x: nav_drawer.set_state('open')]]
+            elevation: 0
+            md_bg_color: 46/255, 46/255, 46/255, 1
+        AnchorLayout:
+            size_hint: 1, 0.75
+            anchor_x: 'center'
+            anchor_y: 'top'
+            AnchorLayout:
+                size_hint: 1.5, 0.75
+                anchor_x: 'center'
+                anchor_y: 'top'
+                FloatLayout:
+                    size_hint: 1,1
+                    MDRoundFlatIconButton:
+                        icon: "barcode"
+                        text: "ECANEAR"
+                        size_hint_x: .3
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5} 
+                        on_press: app.scan()
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        orientation: 'vertical'
+        Image:
+            source: 'logo.png'
+            size_hint: None, None
+            size: '200dp', '200dp'
+            pos_hint: {'center_x': .5}
+        MDLabel:
+            text: ''
+            id: usuarioMenuScan
+            adaptive_height: True
+            halign: 'center'    
+        MDNavigationDrawerMenu:       
+            MDNavigationDrawerDivider:
+            MDNavigationDrawerItem:
+                icon: 'account-arrow-left'
+                text: 'Sair'
+                md_bg_color: app.theme_cls.primary_dark
+                text_color: app.theme_cls.primary_dark
+                icon_color: app.theme_cls.primary_dark
+                on_press: nav_drawer.set_state('close'), app.sair()
+            MDNavigationDrawerItem:
+                id: mudatema
+                icon: 'theme-light-dark'
+                icon_color: app.theme_cls.primary_dark
+                md_bg_color: app.theme_cls.primary_dark
+                text_color: app.theme_cls.primary_dark
+                text: 'Tema Escuro'   
+                on_press: nav_drawer.set_state('close'), app.mudaTema()                                             

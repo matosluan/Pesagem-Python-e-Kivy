@@ -1,0 +1,85 @@
+<PesagemScreen>:
+    name: 'pesagemscreen'
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: pesagemTopBar
+            title: 'Pesagem'
+            anchor_title:'left'
+            left_action_items: [["menu", lambda x: nav_drawer_pesagem.set_state('open')]]
+            elevation: 0
+            md_bg_color: 46/255, 46/255, 46/255, 1
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'top'    
+            ScrollView:
+                MDList:
+                    id: listaEnsaio 
+    MDNavigationDrawer:
+        id: nav_drawer_pesagem
+        orientation: 'vertical'
+        Image:
+            source: 'logo.png'
+            size_hint: None, None
+            size: '200dp', '200dp'
+            pos_hint: {'center_x': .5}
+        MDLabel:
+            id: usuarioMenuPesagem
+            text: ''
+            adaptive_height: True
+            halign: 'center'    
+        MDNavigationDrawerMenu:
+            MDNavigationDrawerItem:
+                icon: 'barcode'
+                text: 'Escaner'   
+                text_color: app.theme_cls.primary_dark
+                icon_color: app.theme_cls.primary_dark
+                md_bg_color: app.theme_cls.primary_dark
+                on_press: app.root.current = 'scanscreen', nav_drawer_pesagem.set_state('close')
+            MDNavigationDrawerDivider:
+            MDNavigationDrawerItem:
+                icon: 'account-arrow-left'
+                text: 'Sair'   
+                text_color: app.theme_cls.primary_dark
+                icon_color: app.theme_cls.primary_dark
+                md_bg_color: app.theme_cls.primary_dark
+                on_press: nav_drawer_pesagem.set_state('close'), app.sair()       
+            MDNavigationDrawerItem:
+                id: mudatema
+                icon: 'theme-light-dark'
+                icon_color: app.theme_cls.primary_dark
+                md_bg_color: app.theme_cls.primary_dark
+                text_color: app.theme_cls.primary_dark
+                text: 'Tema Escuro'   
+                on_press: nav_drawer_pesagem.set_state('close'), app.mudaTema()            
+
+<Ensaio>:
+    FloatLayout:
+        MDLabel:
+            id: codEnsaio
+            text: root.codEnsaio
+            bold: True
+            pos_hint: {'center_x': 0.51, 'center_y': 0.9}     
+        MDLabel:
+            text: root.nomeEnsaio
+            bold: True    
+            pos_hint: {'center_x': 0.51, 'center_y': 0.7} 
+            font_size: 15  
+        MDTextField:
+            id: pesagem
+            hint_text: "Pesagem"
+            pos_hint: {'center_x': 0.16, 'center_y': 0.3} 
+            size_hint_x: .3
+            font_size: 18  
+        MDIconButton:
+            icon: "check-all"
+            pos_hint: {'center_x': 0.51, 'center_y': 0.3} 
+            theme_icon_color: "Custom"
+            icon_color: "green"   
+            on_press: app.confirma(pesagem.text, codEnsaio.text)
+        MDIconButton:
+            icon: "trash-can-outline"
+            pos_hint: {'center_x': 0.71, 'center_y': 0.3}  
+            theme_icon_color: "Custom"
+            icon_color: "red" 
+            on_press: pesagem.text = ''                 

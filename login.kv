@@ -1,0 +1,63 @@
+#: include scaner.kv
+#: include pesagem.kv
+
+WindowManager:
+    LoginScreen:
+    ScanScreen:
+    PesagemScreen:
+
+<LoginScreen>:
+    name: 'loginscreen'
+    BoxLayout:
+        orientation: 'vertical'
+        AnchorLayout:
+            size_hint: 1, 0.75
+            anchor_x: 'center'
+            anchor_y: 'top'
+            AnchorLayout:
+                size_hint: 1.5, 0.75
+                anchor_x: 'center'
+                anchor_y: 'top'
+                BoxLayout:
+                    size_hint: 1,1
+                    orientation: 'vertical'
+                    elevation: 10
+                    padding: 25
+                    spacing: 25
+                    MDLabel:
+                        text: "SISMOV"
+                        font_size: 30
+                        halign: 'center'
+                        bold: True 
+                        size_hint_y: None 
+                        height: self.texture_size[1]
+                        padding_y:  15   
+                    MDTextField:
+                        id: usuario
+                        hint_text: "Usuário"
+                        icon_right: "account"
+                        size_hint_x: .5
+                        width: 200
+                        font_size: 18
+                        pos_hint: {'center_x': 0.5}             
+                    MDTextField:
+                        id: senha
+                        hint_text: "Senha"
+                        icon_right: "eye-off"
+                        size_hint_x: .5
+                        width: 200
+                        font_size: 18
+                        pos_hint: {'center_x': 0.5}
+                        password: True  
+                    MDRoundFlatButton:
+                        text: "ENTRAR"
+                        size_hint_x: .5
+                        font_size: 20
+                        pos_hint: {"center_x": 0.5}
+                        on_press: app.login(usuario.text, senha.text)
+
+
+
+
+                     
+            
