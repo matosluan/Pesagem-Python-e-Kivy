@@ -3,7 +3,7 @@ import numpy as np
 from pyzbar.pyzbar import decode
 import mysql.connector
 
-db = mysql.connector.connect(host='localhost', user='root', password='teste', database='lanali')
+db = mysql.connector.connect(host='localhost', user='root', password='db', database='db')
 cursor = db.cursor(dictionary=True) 
 
 def scaner():
